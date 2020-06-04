@@ -1,12 +1,8 @@
-FROM ubuntu:12.04
+FROM ubuntu:18.04
+COPY . /app
+RUN make /app
+CMD python /app/app.py
 
-#Install dependencies
-RUN apt-get update -y
-RUN apt-get install -y git curl apache2 php5 libapache2-mod-php5 php5-mcrypt php5-mysql
-
-#Install App
-RUN rm -rf /var/www/*
-ADD src /var/www
 
 #configure apache2
 RUN  a2enmod rewrite
